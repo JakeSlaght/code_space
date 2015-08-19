@@ -10,19 +10,38 @@
 		var Animal = function(){
 			this.color ="red"
 		}
+/*The following commented out information is from teh original push*/
+		//Animal.prototype = { size : 900000 , stomachNum : 5 };
+		//function Bird(){
+		//	this.nothing = "something";
+		//}
 
-		Animal.prototype = { size : 900000 , stomachNum : 5 };
+		//Bird.prototype.mouth = "beak";
 
-		function Bird(){
-			this.nothing = "something";
-		}
-
-		Bird.prototype.mouth = "beak";
-
-		Bird.prototype = Animal.prototype;
+		//Bird.prototype = Animal.prototype;
 				
-		var b = new Bird();
-		alert(b.mouth);
+		//var b = new Bird();
+		//alert(b.mouth);
+/*This comment is added above the code to test the protyping 'inheritance'*/
+	
+	var Cat = function(voice,limb){
+		Animal.call(this); //This adds the Animal to the Cat.
+		this.voice = voice;
+		this.fifthlimb=limb;
+	}
+	
+	Cat.prototype=Object.create(Animal.prototype) //Creates a Cat -as- an Animal
+	Cat.prototype.constructor = Cat
+	
+	Cat.prototype.greet = function(){
+		
+		alert("I am a cat and my fur color is: " + this.color + ". I have a " + this.fifthlimb 
+			+ ". When I am hungry I "+ this.voice+".")
+	}
+/*This comment is added below the code to test the protyping 'inheritance'*/
+
+var c = new Cat('meow','tail');
+	window.onload=c.greet();
 		</script>
 	</body>
 </html>
