@@ -10,18 +10,19 @@
 		var Animal = function(){
 			this.color ="red"
 		}
-/*The following commented out information is from teh original push*/
-		//Animal.prototype = { size : 900000 , stomachNum : 5 };
-		//function Bird(){
-		//	this.nothing = "something";
-		//}
 
-		//Bird.prototype.mouth = "beak";
+		Animal.prototype = { size : 900000 , stomachNum : 5 };
+		function Bird(){
+			this.nothing = "something";
+		}
 
-		//Bird.prototype = Animal.prototype;
+		Bird.prototype.mouth = "beak";
+
+		Bird.prototype = Animal.prototype;
 				
-		//var b = new Bird();
-		//alert(b.mouth);
+		var b = new Bird();
+		alert(b.mouth); //This comes up as undefined.
+		
 /*This comment is added above the code to test the protyping 'inheritance'*/
 	
 	var Cat = function(voice,limb){
@@ -31,14 +32,13 @@
 	}
 	
 	Cat.prototype=Object.create(Animal.prototype) //Creates a Cat -as- an Animal
-	Cat.prototype.constructor = Cat
+	Cat.prototype.constructor = Cat //this actually makes the cat
 	
 	Cat.prototype.greet = function(){
-		
+		//This makes the cat say shit.
 		alert("I am a cat and my fur color is: " + this.color + ". I have a " + this.fifthlimb 
-			+ ". When I am hungry I "+ this.voice+".")
+			+ ". When I am hungry I "+ this.voice+".") //This shows up ;)
 	}
-/*This comment is added below the code to test the protyping 'inheritance'*/
 
 var c = new Cat('meow','tail');
 	window.onload=c.greet();
